@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <regex>
+#include <recordData.h>
 using namespace std;
 
 const regex comma(",");
@@ -26,30 +27,45 @@ class enrollment {
 
     }
 
-};
+}; 
 
 int main() {
     vector<vector<string>> data;
-    recordType temp;
-    string line;
 
     ifstream inputFile;
     inputFile.open("../data/1115.csv");
 
-    if (inputFile.is_open()){
-        while ( getline (inputFile, line) ){
-            vector<string> row {sregex_token_iterator(line.begin(),line.end(),comma,-1), sregex_token_iterator() };
-            data.push_back(row);
-        }
-    inputFile.close();
-    }   else {
-        printf("Fail to open file.");
+    string line;
+
+    vector<recordType> dataFile;
+
+    int lineCount = 0;
+    getline(inputFile, line); // ignore header line
+
+    recordType newRecord;
+
+    while (getline(inputFile, line) && !line.empty())
+    {
+        stringstream mystream(line);
+
+        string temp;
+        getline(mystream, newRecord.studentId, ',');
+        getline(mystream, temp, ',');
+        newRecord.courseNo = stod(temp);
+        getline(mystream, newRecord.instructorId, ',');
+        getline(mystream, newRecord.termId, ',');
+        getline(mystream, newRecord.sectionId, ',');
+        getline(mystream, newRecord.grade, ',');
+        if (!mystream)
+            break; // something went wrong reading the line
+
+        dataFile.push_back(newRecord);
+        lineCount++;
     }
 
-    // Print result. Go through all lines and then copy line elements to std::cout
-    for_each(data.begin(), data.end(), [](vector<string> & vs) {
+    for_each(dataFile.begin(), dataFile.end(), [](vector<recordType> & vs) {
         copy(vs.begin(), vs.end(), ostream_iterator<string>(cout, " ")); 
-        cout << "\n"; });
+        cout << "\n"; }); 
 
     
     return 0;

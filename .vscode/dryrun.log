@@ -1,0 +1,4 @@
+make.exe all -f C:\Users\zbbxh\OneDrive\Desktop\SP-2022\CISC-3142\CISC3142Lab3\Makefile --dry-run --keep-going --print-directory
+'make.exe' is not recognized as an internal or external command,
+operable program or batch file.
+

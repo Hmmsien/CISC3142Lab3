@@ -19,6 +19,8 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
+
+	cout<<"good";
     // Read file by command line arguments
     vector<record_t> records;
     for (int i = 1; i < argc; i++) {

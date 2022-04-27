@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
     auto t = std::time(nullptr);
     auto tm = *std::localtime(&t);
     ostringstream oss;
-    oss << put_time(&tm, "%Y-%m-%d-%H-%M-%S");
+    oss << put_time(&tm, "%Y-%m-%d-%H-%M-%S");;
 
     WritePassRate("./output/pass_rate_" + oss.str() + ".csv", pass_rate_result);
     WriteWRate("./output/W_rate_" + oss.str() + ".csv", W_rate_result);

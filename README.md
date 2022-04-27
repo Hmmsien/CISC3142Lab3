@@ -21,13 +21,19 @@ b. Use the submodule feature for managing dependencies
 ## Problem Description:
 The provided CSV files require summarization. Each of the data files contains rosters showing students’ enrollment in courses and grades. Each file contains records for one course number of all sections across multiple terms. These are the main data files to use for generating a report that shows for each instructor (for each course and term).\
 The data that should be added as a git submodule is at:\
-https://gist.github.com/d279545d975c1652689e8195e2426adf.git\
+https://gist.github.com/d279545d975c1652689e8195e2426adf.git \
 Please link the submodule as a sub directory named data\
 • Data CSV files fields: StudentId, CourseNumber*, InstructorId, TermId,
 Section_Id, Grade
 • CourseNumber is either 1115, 3115, 3130. There are 3 CSV files, one corresponding to each course
 number.
 
+## Run Instructions
+Due to the inclusion of a submodule, the repository should be cloned using
+git clone --recurse-submodules <repo link>. 
+Assuming g++ and make are present on our machine, all that is required to run the included code is to execute the command make lab3 from the root directory of the repository. The Makefile is designed such that it will cd into and compile the code inside the Lab-3 directory, then run the program from there. The Makefile will also automatically clean up the .o and .gch files from the src folder.
+  
+  
 ## Source code Specifications 
 (i.e. must have, as opposed to requirements in the next section):
 • All source code in a src folder

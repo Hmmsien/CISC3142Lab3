@@ -58,21 +58,21 @@ Output 3 report under output folder. All filename contain the date time when cre
 Example:
 ### W_rate_2022-04-27-17-45-55.csv<br/>
 |Column Name|Data Type|Description|
-|---|---|---|---|---|
+|-----------|---------|-----------|
 |instructorID|TEXT|Unique ID number identifying each instructor|
 |courseID|INT|Unique ID number identifying each course|
 |W_rate|TEXT|The rate of grade 'W'|
 
 ### fall_vs_spring_pass_rate_2022-04-27-17-45-55.csv<br/>
 |Column Name|Data Type|Description|
-|---|---|---|---|---|
+|-----------|---------|-----------|
 |courseID|INT|Unique ID number identifying each course|
 |Fall vs Spring|TEXT|Semester as Fall or Spring|
 |pass_rate|TEXT|The rate of passing the course during the sepecify semester|
 
 ### pass_rate_2022-04-27-17-45-55.csv<br/>
 |Column Name|Data Type|Description|
-|---|---|---|---|---|
+|-----------|---------|-----------|
 |instructorID|TEXT|Unique ID number identifying each instructor|
 |courseID|INT|Unique ID number identifying each course|
 |pass_rate|TEXT|The rate of passing the course under specify instructor|

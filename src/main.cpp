@@ -1,72 +1,48 @@
+/**
+ * @file main.cpp
+ * @brief use **unordered_map** to store <key, value> pair
+ * The key is the data item that needs to be grouped for statistics, and the
+ * value is the statistical result.
+ *
+ *
+ * dataFlow: FileOption(input) -> main.c -> aggregationOption -> FileOption(output)
+ */
+
+#include <ctime>
+#include <iomanip>
 #include <iostream>
-#include <fstream>
-#include <string>
 #include <vector>
-#include <regex>
-#include <recordData.h>
+
+#include "FileOption.h"
+#include "aggregationOption.h"
+#include "dataType.h"
 using namespace std;
 
-const regex comma(",");
-
-struct recordType {
-    string studentId;
-    int courseNo;
-    string instructorId;
-    string termId;
-    string sectionId;
-    string grade;
-};
-
-class enrollment {
-    
-    enrollment() {
-
+int main(int argc, char *argv[]) {
+    // Read file by command line arguments
+    vector<record_t> records;
+    for (int i = 1; i < argc; i++) {
+        ReadFile(argv[i], records);
     }
 
-    void updateGrade() {
+    // Calculate the pass rate for each course for each teacher
+    // Use instructorID + " " + courseID as key and pass rate as double value
+    unordered_map<string, double> pass_rate_result = pass_rate(records);
 
-    }
+    // Calculate the W rate for each course for each teacher
+    // Use instructorID + " " + courseID as key and W rate as double value
+    unordered_map<string, double> W_rate_result = W_rate(records);
+    unordered_map<string, double> fall_vs_spring_pass_rate_result = fall_vs_spring_pass_rate(records);
 
-}; 
+    // Write data to output file folder
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    ostringstream oss;
+    oss << put_time(&tm, "%Y-%m-%d-%H-%M-%S");
 
-int main() {
-    vector<vector<string>> data;
+    WritePassRate("./output/pass_rate_" + oss.str() + ".csv", pass_rate_result);
+    WriteWRate("./output/W_rate_" + oss.str() + ".csv", W_rate_result);
+    WriteFallVsSpringPassRate("./output/fall_vs_spring_pass_rate_" + oss.str() + ".csv", fall_vs_spring_pass_rate_result);
 
-    ifstream inputFile;
-    inputFile.open("../data/1115.csv");
-
-    string line;
-
-    vector<recordType> dataFile;
-
-    int lineCount = 0;
-    getline(inputFile, line); // ignore header line
-
-    recordType newRecord;
-
-    while (getline(inputFile, line) && !line.empty())
-    {
-        stringstream mystream(line);
-
-        string temp;
-        getline(mystream, newRecord.studentId, ',');
-        getline(mystream, temp, ',');
-        newRecord.courseNo = stod(temp);
-        getline(mystream, newRecord.instructorId, ',');
-        getline(mystream, newRecord.termId, ',');
-        getline(mystream, newRecord.sectionId, ',');
-        getline(mystream, newRecord.grade, ',');
-        if (!mystream)
-            break; // something went wrong reading the line
-
-        dataFile.push_back(newRecord);
-        lineCount++;
-    }
-
-    for_each(dataFile.begin(), dataFile.end(), [](vector<recordType> & vs) {
-        copy(vs.begin(), vs.end(), ostream_iterator<string>(cout, " ")); 
-        cout << "\n"; }); 
-
-    
     return 0;
 }

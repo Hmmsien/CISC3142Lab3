@@ -29,6 +29,8 @@ Section_Id, Grade
 number.
 
 # Run
+Using C++14 compiler
+
 Due to the inclusion of a submodule, the repository should be cloned using 
 ```sh
 $ git clone --recurse-submodules <repo link>

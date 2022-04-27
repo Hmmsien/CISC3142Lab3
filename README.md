@@ -1,4 +1,4 @@
-# CISC3142Lab3-
+# CISC3142Lab3
 This programming assignment will be exposed to OOP paradigm, as well as practice with refactoring code to make it more maintainable.
 
 1. Use object-oriented style of coding with C++, including procedural and data abstraction design patterns.  
@@ -28,11 +28,15 @@ Section_Id, Grade
 • CourseNumber is either 1115, 3115, 3130. There are 3 CSV files, one corresponding to each course
 number.
 
-## Run Instructions
-
- Due to the inclusion of a submodule, the repository should be cloned using 
- `git clone --recurse-submodules <repo link>`.
-
+# Run
+Due to the inclusion of a submodule, the repository should be cloned using 
+```sh
+$ git clone --recurse-submodules <repo link>
+```
+To run this project: make sure you are in the root of the project repository and run
+```sh
+$ make lab3
+```
  
 ## Source code Specifications 
 (i.e. must have, as opposed to requirements in the next section):  

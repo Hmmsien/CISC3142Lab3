@@ -24,14 +24,14 @@ The data that should be added as a git submodule is at:
 https://gist.github.com/d279545d975c1652689e8195e2426adf.git
 Please link the submodule as a sub directory named data  
 • Data CSV files fields: StudentId, CourseNumber*, InstructorId, TermId,
-Section_Id, Grade
+Section_Id, Grade  
 • CourseNumber is either 1115, 3115, 3130. There are 3 CSV files, one corresponding to each course
 number.
 
 ## Run Instructions
 
-### Due to the inclusion of a submodule, the repository should be cloned using 
-### `git clone --recurse-submodules <repo link>`.
+ Due to the inclusion of a submodule, the repository should be cloned using 
+ `git clone --recurse-submodules <repo link>`.
 
  
 ## Source code Specifications 
